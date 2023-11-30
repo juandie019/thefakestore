@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <router-link to="/">
         The FakeStore
-    </div>
+    </router-link>
 </template>

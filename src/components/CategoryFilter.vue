@@ -26,15 +26,22 @@ const changeCategory = computed({
 
 
 <template>
-    <div class="flex flex-wrap gap-4">
-        <div>
+    <div class="flex row-overflow gap-4">
+        <div class="flex">
             <RadioButton v-model="changeCategory" inputId="all" name="all" value="" />
             <label for="all" class="ml-2">Todos</label>
         </div>
 
-        <div v-for="(category, index) in props.categories" :key="index.toString()">
+        <div v-for="(category, index) in props.categories" :key="index.toString()" class="flex">
             <RadioButton v-model="changeCategory" :inputId="index.toString()" :name="category" :value="category" />
             <label :for="index.toString()" class="ml-2">{{ category}}</label>
         </div>
     </div>
 </template>
+
+<style scoped>
+    .row-overflow {
+        overflow: auto;
+        overflow-x: auto;
+    }
+</style>
