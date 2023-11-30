@@ -5,6 +5,8 @@ import { useProductsStore } from '@/stores/Products';
 
 import ProductsWrapper from '@/components/ProductsWrapper.vue';
 import CategoryFilter from '@/components/CategoryFilter.vue';
+import Skeleton from '@/components/Skeleton.vue';
+import Alert from '@/components/Alert.vue';
 
 const productsHomeStore = useHomeProductsStore();
 const producsStore = useProductsStore();
@@ -22,11 +24,19 @@ const filterProducts = (category: string) => {
 
 <template>
   <main class="container page-padding">
+
     <category-filter 
       class="mb-5" 
       :categories="producsStore.categories"
       @onSelect="filterProducts"
     />
-    <products-wrapper :products="productsHomeStore.productList"/>
+
+    <div v-if="!productsHomeStore.loading">
+      <products-wrapper :products="productsHomeStore.productList"/>
+    </div>
+    <div v-else>
+      <skeleton />
+    </div>
+    <alert v-model="productsHomeStore.error" summary="Sucedió un error" detail="Intenta más tarde" type="error" />
   </main>
 </template>

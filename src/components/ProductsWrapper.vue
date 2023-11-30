@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { Product } from '@/interfaces/products';
-import { useCartStore } from '@/stores/cart';
+import { useCart } from '@/composables/cart';
 
+import Alert from './Alert.vue';
 import ProductCard from './Product.vue';
 
 interface ProductWrapperProps {
@@ -9,7 +10,7 @@ interface ProductWrapperProps {
     removeRole?: boolean,
 };
 
-const cartStore = useCartStore();
+const { addToCart, removeFromCart, alert } = useCart();
 
 const props = defineProps<ProductWrapperProps>();
 </script>
@@ -22,9 +23,16 @@ const props = defineProps<ProductWrapperProps>();
         :key="product.id"
         :data="product" 
         :show-remove="removeRole"
-        @on-add="cartStore.addProduct"
-        @on-remove="cartStore.removeProduct"
+        @on-add="addToCart"
+        @on-remove="removeFromCart"
         class="col-12 md:col-4 lg:col-3 al"
+    />
+
+    <alert 
+        v-model="alert.show" 
+        :type="alert.type" 
+        :summary="alert.title" 
+        :detail="alert.subtitle"
     />
 </div>
 </template>

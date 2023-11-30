@@ -5,17 +5,25 @@ import type { Product } from '@/interfaces/products';
 export const useCartStore = defineStore('cartStore', () => {
   const products = ref<Product[]>([]);
 
-  const addProduct = async (product: Product) => {
+  const addProduct = (product: Product): boolean => {
     const index = findProductIndex(products.value, product.id);
 
-    if(index < 0)
+    if(index < 0){
       products.value.push(product);
+      return true;
+    }
+
+    return false;
   }
 
-  const removeProduct = async (product: Product) => {
+  const removeProduct = (product: Product) : boolean => {
     const index = findProductIndex(products.value, product.id);
-    
-    products.value.splice(index, 1);
+    if(index >= 0){
+      products.value.splice(index, 1);
+      return true;
+    }
+
+    return false;
   }
 
   const productsCount = computed(()=> {
