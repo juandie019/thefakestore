@@ -1,12 +1,23 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+import { useHomeProductsStore } from './stores/homeProducts';
+
+import InputText from 'primevue/inputtext';
 import Logo from '@/components/Logo.vue'
+
+const homeProductsStore = useHomeProductsStore();
 
 </script>
 
 <template>
-  <header class="flex flex-row justify-content-between align-items-center">
+  <header class="flex justify-content-between align-items-center">
       <logo />
+      
+      <span class="p-input-icon-left">
+          <i class="pi pi-search" />
+          <InputText v-model="homeProductsStore.searchTerm" placeholder="Search" />
+      </span>
+
       <nav class="flex flex-row align-items-center gap-3">
         <router-link to="/">Carrito</router-link>
       </nav>
