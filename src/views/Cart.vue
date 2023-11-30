@@ -11,6 +11,9 @@ const cartStore = useCartStore();
       <div>No tienes productos en tu carrito :(</div>
       <router-link class="mt-3 p-button" to="/">Exporar productos</router-link>
     </div>
-    <products-wrapper v-else :products="cartStore.products" remove-role/>
+    <div v-else>
+      <products-wrapper :products="cartStore.products" remove-role/>
+      <div class="mt-5">Total: ${{ cartStore.total }}</div>
+    </div>
   </main>
 </template>

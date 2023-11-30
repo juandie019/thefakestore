@@ -28,9 +28,13 @@ export const useCartStore = defineStore('cartStore', () => {
 
   const productsCount = computed(()=> {
     return products.value.length;
-  })
+  });
 
-  return { products, addProduct, removeProduct, productsCount }
+  const total = computed(()=> {
+    return products.value.reduce((accumulator, p) => accumulator + p.price, 0);
+  });
+
+  return { products, addProduct, removeProduct, productsCount, total }
 })
 
 const findProductIndex = (productList: Product[], productId: number) => {
