@@ -1,16 +1,23 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import Logo from '@/components/Logo.vue'
+
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+  <header class="flex flex-row justify-content-between align-items-center">
+      <logo />
+      <nav class="flex flex-row align-items-center gap-3">
+        <router-link to="/">Carrito</router-link>
       </nav>
-    </div>
   </header>
 
   <RouterView />
 </template>
+
+<style scoped>
+header {
+  border-bottom: 1px solid rgb(221, 217, 217);
+  padding: 10px 20px 10px 20px;
+}
+</style>

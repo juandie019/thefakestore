@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <main>
-    hola
+  <main class="container page-padding">
+    Home
   </main>
 </template>
