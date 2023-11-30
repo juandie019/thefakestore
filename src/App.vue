@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { useHomeProductsStore } from './stores/homeProducts';
+import { useCartStore } from './stores/cart';
 
 import InputText from 'primevue/inputtext';
 import Logo from '@/components/Logo.vue'
+import CartBadge from './components/CartBadge.vue';
 
 const homeProductsStore = useHomeProductsStore();
+const cartStore = useCartStore();
 
 </script>
 
 <template>
-  <header class="flex justify-content-between align-items-center">
+  <header class="flex flex-wrap justify-content-between align-items-center gap-1">
       <logo />
       
       <span class="p-input-icon-left">
@@ -19,7 +22,9 @@ const homeProductsStore = useHomeProductsStore();
       </span>
 
       <nav class="flex flex-row align-items-center gap-3">
-        <router-link to="/">Carrito</router-link>
+        <router-link to="/cart">
+          <cart-badge :value="cartStore.productsCount" />
+        </router-link>
       </nav>
   </header>
 
